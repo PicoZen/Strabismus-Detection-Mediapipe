@@ -49,7 +49,7 @@ with mp_face_mesh.FaceMesh(
         if results.multi_face_landmarks:
             mesh_points = np.array([np.multiply([p.x, p.y], [img_w, img_h]).astype(int) for p in results.multi_face_landmarks[0].landmark])
             # print(results.multi_face_landmarks[0].landmark)
-            print(mesh_points.shape)
+            #print(mesh_points.shape)
             #cv2.polylines(frame, [mesh_points[LEFT_EYE]], True, (0, 255, 0), 1, cv2.LINE_AA )
             #cv2.polylines (frame, [mesh_points[RIGHT_EYE]], True, (0, 255, 0), 1, cv2.LINE_AA)
             #cv2.polylines (frame, [mesh_points[LEFT_IRIS]], True, (0, 255, 0), 1, cv2.LINE_AA)
@@ -74,9 +74,9 @@ with mp_face_mesh.FaceMesh(
             total_ratio = max(right_ratio, left_ratio) / min(right_ratio, left_ratio)
             print(total_ratio)
 
-            cv2.putText (frame, f"Ratio : {total_ratio:.2f}", (30, 30), cv2.FONT_HERSHEY_PLAIN, 1.2, (0, 0, 255), 1, cv2.LINE_AA)
+            cv2.putText (frame, f"Deviation : {total_ratio:.2f}", (30, 30), cv2.FONT_HERSHEY_PLAIN, 1.2, (0, 0, 255), 1, cv2.LINE_AA)
 
-        cv2.imshow("img", frame)
+        cv2.imshow("Live", frame)
         key = cv2.waitKey(1)
         if key == ord('q'):
             break
